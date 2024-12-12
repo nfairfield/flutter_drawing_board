@@ -288,9 +288,9 @@ class _DrawingBoardState extends State<DrawingBoard> {
                     ),
                     onPressed: () => controller.redo(),
                   ),
-                  IconButton(
-                      icon: const Icon(CupertinoIcons.rotate_right),
-                      onPressed: () => controller.turn()),
+                  //IconButton(
+                  //    icon: const Icon(CupertinoIcons.rotate_right),
+                  //    onPressed: () => controller.turn()),
                   IconButton(
                     icon: const Icon(CupertinoIcons.trash),
                     onPressed: () => controller.clear(),
