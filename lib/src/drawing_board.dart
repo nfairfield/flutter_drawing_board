@@ -8,11 +8,14 @@ import 'helper/ex_value_builder.dart';
 import 'helper/get_size.dart';
 import 'paint_contents/circle.dart';
 import 'paint_contents/eraser.dart';
+import 'paint_contents/line_eraser.dart';
 import 'paint_contents/rectangle.dart';
 import 'paint_contents/simple_line.dart';
 import 'paint_contents/smooth_line.dart';
 import 'paint_contents/straight_line.dart';
 import 'painter.dart';
+
+import 'package:material_symbols_icons/symbols.dart';
 
 /// 默认工具栏构建器
 typedef DefaultToolsBuilder = List<DefToolItem> Function(
@@ -247,6 +250,10 @@ class _DrawingBoardState extends State<DrawingBoard> {
             builder: (_, DrawConfig dc, ___) {
               return Row(
                 children: <Widget>[
+                  //IconButton(
+                  //  icon: const Icon(Icons.edit),
+                  //  onPressed: () => controller.setPaintContent(SimpleLine()),
+                  //),
                   SizedBox(
                     height: 24,
                     width: 160,
@@ -274,13 +281,15 @@ class _DrawingBoardState extends State<DrawingBoard> {
                   //IconButton(
                   //    icon: const Icon(CupertinoIcons.rotate_right),
                   //    onPressed: () => controller.turn()),
-                  //IconButton(
-                  //  icon: const Icon(CupertinoIcons.bandage),
-                  //  onPressed: () {
-                  //    print(controller.getHistory[0].toContentJson());
-                  //    controller.setPaintContent(Eraser());
-                  //  },
-                  //),
+                  IconButton.filled(
+                    icon: const Icon(Symbols.ink_eraser),
+                    isSelected: controller.drawConfig.value.contentType == LineEraser,
+                    onPressed: () {
+                      controller.setPaintContent(controller.drawConfig.value.contentType == LineEraser
+                          ? SimpleLine()
+                          : LineEraser(controller));
+                    },
+                  ),
                   IconButton(
                     icon: const Icon(CupertinoIcons.trash),
                     onPressed: () => controller.clear(),
