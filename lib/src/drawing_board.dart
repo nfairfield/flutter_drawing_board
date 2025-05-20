@@ -258,6 +258,8 @@ class _DrawingBoardState extends State<DrawingBoard> {
                     height: 24,
                     width: 160,
                     child: Slider(
+                      thumbColor: Colors.red,
+                      activeColor: Colors.red,
                       value: dc.strokeWidth,
                       max: 50,
                       min: 1,
@@ -281,14 +283,19 @@ class _DrawingBoardState extends State<DrawingBoard> {
                   //IconButton(
                   //    icon: const Icon(CupertinoIcons.rotate_right),
                   //    onPressed: () => controller.turn()),
-                  IconButton.filled(
-                    icon: const Icon(Symbols.ink_eraser),
-                    isSelected: controller.drawConfig.value.contentType == LineEraser,
-                    onPressed: () {
-                      controller.setPaintContent(controller.drawConfig.value.contentType == LineEraser
-                          ? SimpleLine()
-                          : LineEraser(controller));
-                    },
+                  Ink(
+                    decoration: (controller.drawConfig.value.contentType == LineEraser)
+                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                        : null,
+                    child: IconButton(
+                      icon: const Icon(Symbols.ink_eraser),
+                      isSelected: controller.drawConfig.value.contentType == LineEraser,
+                      onPressed: () {
+                        controller.setPaintContent(controller.drawConfig.value.contentType == LineEraser
+                            ? SimpleLine()
+                            : LineEraser(controller));
+                      },
+                    ),
                   ),
                   IconButton(
                     icon: const Icon(CupertinoIcons.trash),
