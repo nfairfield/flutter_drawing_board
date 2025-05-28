@@ -250,10 +250,36 @@ class _DrawingBoardState extends State<DrawingBoard> {
             builder: (_, DrawConfig dc, ___) {
               return Row(
                 children: <Widget>[
-                  //IconButton(
-                  //  icon: const Icon(Icons.edit),
-                  //  onPressed: () => controller.setPaintContent(SimpleLine()),
-                  //),
+                  Ink(
+                    decoration: (controller.drawConfig.value.contentType == SimpleLine)
+                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                        : null,
+                    child: IconButton(
+                      icon: const Icon(Icons.edit),
+                      isSelected: controller.drawConfig.value.contentType == SimpleLine,
+                      onPressed: () => controller.setPaintContent(SimpleLine()),
+                    ),
+                  ),
+                  Ink(
+                    decoration: (controller.drawConfig.value.contentType == Eraser)
+                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                        : null,
+                    child: IconButton(
+                      icon: const Icon(Symbols.ink_eraser),
+                      isSelected: controller.drawConfig.value.contentType == Eraser,
+                      onPressed: () => controller.setPaintContent(Eraser()),
+                    ),
+                  ),
+                  Ink(
+                    decoration: (controller.drawConfig.value.contentType == LineEraser)
+                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                        : null,
+                    child: IconButton(
+                      icon: const Icon(Symbols.ink_eraser),
+                      isSelected: controller.drawConfig.value.contentType == LineEraser,
+                      onPressed: () => controller.setPaintContent(LineEraser(controller)),
+                    ),
+                  ),
                   SizedBox(
                     height: 24,
                     width: 160,
@@ -283,20 +309,20 @@ class _DrawingBoardState extends State<DrawingBoard> {
                   //IconButton(
                   //    icon: const Icon(CupertinoIcons.rotate_right),
                   //    onPressed: () => controller.turn()),
-                  Ink(
-                    decoration: (controller.drawConfig.value.contentType == LineEraser)
-                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
-                        : null,
-                    child: IconButton(
-                      icon: const Icon(Symbols.ink_eraser),
-                      isSelected: controller.drawConfig.value.contentType == LineEraser,
-                      onPressed: () {
-                        controller.setPaintContent(controller.drawConfig.value.contentType == LineEraser
-                            ? SimpleLine()
-                            : LineEraser(controller));
-                      },
-                    ),
-                  ),
+                  //Ink(
+                  //  decoration: (controller.drawConfig.value.contentType == LineEraser)
+                  //      ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                  //      : null,
+                  //  child: IconButton(
+                  //    icon: const Icon(Symbols.ink_eraser),
+                  //    isSelected: controller.drawConfig.value.contentType == LineEraser,
+                  //    onPressed: () {
+                  //      controller.setPaintContent(controller.drawConfig.value.contentType == LineEraser
+                  //          ? SimpleLine()
+                  //          : LineEraser(controller));
+                  //    },
+                  //  ),
+                  //),
                   IconButton(
                     icon: const Icon(CupertinoIcons.trash),
                     onPressed: () => controller.clear(),
