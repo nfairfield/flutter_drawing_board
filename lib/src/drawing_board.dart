@@ -270,16 +270,16 @@ class _DrawingBoardState extends State<DrawingBoard> {
                       onPressed: () => controller.setPaintContent(Eraser()),
                     ),
                   ),
-                  Ink(
-                    decoration: (controller.drawConfig.value.contentType == LineEraser)
-                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
-                        : null,
-                    child: IconButton(
-                      icon: const Icon(Symbols.ink_eraser),
-                      isSelected: controller.drawConfig.value.contentType == LineEraser,
-                      onPressed: () => controller.setPaintContent(LineEraser(controller)),
-                    ),
-                  ),
+                  //Ink(
+                  //  decoration: (controller.drawConfig.value.contentType == LineEraser)
+                  //      ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                  //      : null,
+                  //  child: IconButton(
+                  //    icon: const Icon(Symbols.ink_eraser),
+                  //    isSelected: controller.drawConfig.value.contentType == LineEraser,
+                  //    onPressed: () => controller.setPaintContent(LineEraser(controller)),
+                  //  ),
+                  //),
                   SizedBox(
                     height: 24,
                     width: 160,
