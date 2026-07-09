@@ -13,6 +13,7 @@ import 'paint_contents/rectangle.dart';
 import 'paint_contents/simple_line.dart';
 import 'paint_contents/smooth_line.dart';
 import 'paint_contents/straight_line.dart';
+import 'paint_contents/text_content.dart';
 import 'painter.dart';
 
 import 'package:material_symbols_icons/symbols.dart';
@@ -116,6 +117,10 @@ class DrawingBoard extends StatefulWidget {
           isActive: currType == Eraser,
           icon: CupertinoIcons.bandage,
           onTap: () => controller.setPaintContent(Eraser())),
+      DefToolItem(
+          isActive: currType == TextContent,
+          icon: Icons.title,
+          onTap: () => controller.setPaintContent(TextContent())),
     ];
   }
 
@@ -268,6 +273,16 @@ class _DrawingBoardState extends State<DrawingBoard> {
                       icon: const Icon(Symbols.ink_eraser),
                       isSelected: controller.drawConfig.value.contentType == Eraser,
                       onPressed: () => controller.setPaintContent(Eraser()),
+                    ),
+                  ),
+                  Ink(
+                    decoration: (controller.drawConfig.value.contentType == TextContent)
+                        ? const ShapeDecoration(color: Colors.lightBlue, shape: CircleBorder())
+                        : null,
+                    child: IconButton(
+                      icon: const Icon(Icons.title),
+                      isSelected: controller.drawConfig.value.contentType == TextContent,
+                      onPressed: () => controller.setPaintContent(TextContent()),
                     ),
                   ),
                   //Ink(
